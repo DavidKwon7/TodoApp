@@ -1,6 +1,7 @@
 package com.example.todoapp
 
 import android.app.Application
+import com.example.todoapp.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -13,7 +14,7 @@ class TodoApplication : Application() {
         startKoin {
             androidLogger(Level.ERROR)
             androidContext(this@TodoApplication)
-            modules()
+            modules(appModule)
         }
     }
 }
