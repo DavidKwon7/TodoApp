@@ -1,6 +1,7 @@
 package com.example.todoapp
 
 import android.app.Application
+import android.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.LiveData
 import com.example.todoapp.di.appTestModule
 import com.example.todoapp.livedata.LiveDataTestObserver
@@ -22,10 +23,13 @@ import org.mockito.junit.MockitoRule
 
 // 실험용으로 사용되고 있는 api가 있는 경우 @OptIn(ExperimentalCoroutinesApi..)을 넣어준다.
 @OptIn(ExperimentalCoroutinesApi::class)
-internal class ViewModelTest : KoinTest {
+internal abstract class ViewModelTest : KoinTest {
 
     @get:Rule
     val mockitoRule: MockitoRule = MockitoJUnit.rule()
+
+    @get:Rule
+    val instanceExecutorRule = InstantTaskExecutorRule()
 
     @Mock
     private lateinit var context: Application
