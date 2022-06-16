@@ -20,5 +20,5 @@ internal val appTestModule = module {
 
     single<TodoRepository> { TestToDoRepository() }
 
-    viewModel { ListViewModel() }
+    viewModel { ListViewModel(get(), get(), get()) }
 }

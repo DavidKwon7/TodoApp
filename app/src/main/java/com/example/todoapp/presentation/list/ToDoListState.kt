@@ -4,6 +4,8 @@ import com.example.todoapp.data.entity.ToDoEntity
 
 sealed class ToDoListState {
 
+    object UnInitialized: ToDoListState()
+
     object Loading : ToDoListState()
 
     object Fail : ToDoListState()
