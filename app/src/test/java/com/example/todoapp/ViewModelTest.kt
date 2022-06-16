@@ -1,7 +1,7 @@
 package com.example.todoapp
 
 import android.app.Application
-import android.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.LiveData
 import com.example.todoapp.di.appTestModule
 import com.example.todoapp.livedata.LiveDataTestObserver
@@ -57,6 +57,7 @@ internal abstract class ViewModelTest : KoinTest {
     protected fun <T> LiveData<T>.test(): LiveDataTestObserver<T> {
         val testObserver = LiveDataTestObserver<T>()
         observeForever(testObserver)
+
         return testObserver
     }
 }

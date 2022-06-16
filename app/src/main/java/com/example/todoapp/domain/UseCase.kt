@@ -1,3 +1,3 @@
 package com.example.todoapp.domain
 
-internal interface UseCase { }
+internal interface UseCase

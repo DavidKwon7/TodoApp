@@ -12,7 +12,7 @@ import com.example.todoapp.domain.todo.UpdateToDoUseCase
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class ListViewModel(
+internal class ListViewModel(
     private val getToDoListUseCase: GetToDoListUseCase,
     private val updateToDoUseCase: UpdateToDoUseCase,
     private val deleteAllToDoItemUseCase: DeleteAllToDoItemUseCase
