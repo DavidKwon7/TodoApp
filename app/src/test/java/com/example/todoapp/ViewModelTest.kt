@@ -7,6 +7,7 @@ import com.example.todoapp.di.appTestModule
 import com.example.todoapp.livedata.LiveDataTestObserver
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
@@ -22,7 +23,8 @@ import org.mockito.junit.MockitoJUnit
 import org.mockito.junit.MockitoRule
 
 // 실험용으로 사용되고 있는 api가 있는 경우 @OptIn(ExperimentalCoroutinesApi..)을 넣어준다.
-@OptIn(ExperimentalCoroutinesApi::class)
+@ObsoleteCoroutinesApi
+@ExperimentalCoroutinesApi
 internal abstract class ViewModelTest : KoinTest {
 
     @get:Rule

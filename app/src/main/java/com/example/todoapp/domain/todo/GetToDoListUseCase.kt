@@ -4,7 +4,7 @@ import com.example.todoapp.data.entity.ToDoEntity
 import com.example.todoapp.data.local.repository.TodoRepository
 import com.example.todoapp.domain.UseCase
 
-class GetToDoListUseCase(
+internal class GetToDoListUseCase(
     private val toDoRepository: TodoRepository
 ) : UseCase {
 

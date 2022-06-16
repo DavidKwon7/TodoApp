@@ -4,7 +4,7 @@ import com.example.todoapp.data.entity.ToDoEntity
 import com.example.todoapp.data.local.repository.TodoRepository
 import com.example.todoapp.domain.UseCase
 
-class DeleteAllToDoItemUseCase(
+internal class DeleteAllToDoItemUseCase(
     private val todoRepository: TodoRepository
 ) : UseCase {
     suspend operator fun invoke() {
