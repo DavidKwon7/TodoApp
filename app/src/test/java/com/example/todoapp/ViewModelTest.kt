@@ -1,7 +1,9 @@
 package com.example.todoapp
 
 import android.app.Application
+import androidx.lifecycle.LiveData
 import com.example.todoapp.di.appTestModule
+import com.example.todoapp.livedata.LiveDataTestObserver
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
@@ -44,5 +46,11 @@ internal class ViewModelTest : KoinTest {
     fun tearDown() {
         stopKoin()
         Dispatchers.resetMain()
+    }
+
+    protected fun <T> LiveData<T>.test(): LiveDataTestObserver<T> {
+        val testObserver = LiveDataTestObserver<T>()
+        observeForever(testObserver)
+        return testObserver
     }
 }
