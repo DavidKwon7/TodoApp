@@ -3,6 +3,7 @@ package com.example.todoapp.di
 import com.example.todoapp.data.local.repository.TodoRepository
 import com.example.todoapp.data.repository.TestToDoRepository
 import com.example.todoapp.domain.todo.*
+import com.example.todoapp.presentation.list.ListViewModel
 import com.example.todoapp.viewModel.todo.ListViewModelTest
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -19,4 +20,5 @@ internal val appTestModule = module {
 
     single<TodoRepository> { TestToDoRepository() }
 
+    viewModel { ListViewModel() }
 }
