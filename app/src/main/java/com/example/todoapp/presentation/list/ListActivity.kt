@@ -47,7 +47,7 @@ internal class ListActivity : BaseActivity<ListViewModel>(), CoroutineScope {
     }
 
     private fun handleLoadingState() = with(binding) {
-
+        // 코드 입력 (view)
     }
 
 }
