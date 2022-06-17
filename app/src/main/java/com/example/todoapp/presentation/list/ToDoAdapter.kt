@@ -1,5 +1,6 @@
 package com.example.todoapp.presentation.list
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -49,17 +50,24 @@ class ToDoAdapter : RecyclerView.Adapter<ToDoAdapter.ToDoItemViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ToDoItemViewHolder {
-        TODO("Not yet implemented")
+        val view = ViewholderTodoItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ToDoItemViewHolder(view, toDoItemClickListener)
     }
 
     override fun onBindViewHolder(holder: ToDoItemViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.bindData(toDoList[position])
+        holder.bindViews(toDoList[position])
     }
 
     override fun getItemCount(): Int {
         return toDoList.size
     }
 
-
+    fun setToDoList(toDoList: List<ToDoEntity>, toDoItemClickListener: (ToDoEntity) -> Unit, toDoCheckListener: (ToDoEntity) -> Unit) {
+        this.toDoList = toDoList
+        this.toDoItemClickListener = toDoItemClickListener
+        this.toDoCheckListener = toDoCheckListener
+        notifyDataSetChanged()
+    }
 
 }
