@@ -1,6 +1,7 @@
 package com.example.todoapp.data.local.db
 
 import androidx.room.Database
+import androidx.room.RoomDatabase
 import com.example.todoapp.data.entity.ToDoEntity
 import com.example.todoapp.data.local.db.dao.ToDoDao
 
@@ -9,7 +10,7 @@ import com.example.todoapp.data.local.db.dao.ToDoDao
     version = 1,
     exportSchema = false
 )
-abstract class ToDoDatabase {
+abstract class ToDoDatabase: RoomDatabase() {
     abstract fun todoDao(): ToDoDao
 
     companion object {
