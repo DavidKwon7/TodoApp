@@ -4,8 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
 import androidx.activity.viewModels
+import androidx.core.view.isGone
 import com.example.todoapp.R
-import com.example.todoapp.databinding.ActivityMainBinding
+import com.example.todoapp.databinding.ActivityListBinding
 import com.example.todoapp.presentation.base.BaseActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -16,7 +17,8 @@ internal class ListActivity : BaseActivity<ListViewModel>(), CoroutineScope {
 
     override val viewModel: ListViewModel by viewModels()
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityListBinding
+
 
     // 코루틴 설정
     override val coroutineContext: CoroutineContext
@@ -24,11 +26,11 @@ internal class ListActivity : BaseActivity<ListViewModel>(), CoroutineScope {
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityListBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
 
-    private fun initViews(binding: ActivityMainBinding) = with(binding) {
+    private fun initViews(binding: ActivityListBinding) = with(binding) {
         // Adapter 연결
         // 새로고침
     }
@@ -47,7 +49,21 @@ internal class ListActivity : BaseActivity<ListViewModel>(), CoroutineScope {
     }
 
     private fun handleLoadingState() = with(binding) {
-        // 코드 입력 (view)
+        refreshLayout.isRefreshing = true
+    }
+
+    private fun handleSuccessState(state: ToDoListState.Success) = with(binding) {
+        refreshLayout.isEnabled = state.todoList.isNotEmpty()
+        refreshLayout.isRefreshing = false
+
+        if (state.todoList.isEmpty()) {
+            emptyResultTextView.isGone = false
+            recyclerView.isGone = true
+        } else {
+            emptyResultTextView.isGone = true
+            recyclerView.isGone = false
+
+        }
     }
 
 }
