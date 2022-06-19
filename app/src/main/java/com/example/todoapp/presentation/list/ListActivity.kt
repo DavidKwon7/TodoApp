@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import androidx.activity.viewModels
 import androidx.core.view.isGone
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todoapp.R
 import com.example.todoapp.databinding.ActivityListBinding
 import com.example.todoapp.presentation.base.BaseActivity
@@ -16,6 +17,7 @@ import kotlin.coroutines.CoroutineContext
 internal class ListActivity : BaseActivity<ListViewModel>(), CoroutineScope {
 
     override val viewModel: ListViewModel by viewModels()
+    private val adapter = ToDoAdapter()
 
     private lateinit var binding: ActivityListBinding
 
@@ -31,8 +33,8 @@ internal class ListActivity : BaseActivity<ListViewModel>(), CoroutineScope {
     }
 
     private fun initViews(binding: ActivityListBinding) = with(binding) {
-        // Adapter 연결
-        // 새로고침
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this@ListActivity, LinearLayoutManager.VERTICAL, false)
     }
 
     override fun observeData() {
