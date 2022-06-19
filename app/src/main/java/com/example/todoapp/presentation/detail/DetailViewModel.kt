@@ -9,6 +9,7 @@ import com.example.todoapp.domain.todo.DeleteToDoItemUseCase
 import com.example.todoapp.domain.todo.GetToDoItemUseCase
 import com.example.todoapp.domain.todo.InsertToDoUseCase
 import com.example.todoapp.domain.todo.UpdateToDoUseCase
+import com.example.todoapp.presentation.base.BaseViewModel
 import com.example.todoapp.presentation.list.DetailMode
 import kotlinx.coroutines.launch
 import java.lang.Exception
@@ -26,12 +27,12 @@ internal class DetailViewModel(
     private val deleteToDoItemUseCase: DeleteToDoItemUseCase,
     private val updateToDoUseCase: UpdateToDoUseCase,
     private val insertToDoUseCase: InsertToDoUseCase
-) : ViewModel() {
+) : BaseViewModel() {
 
     private var _toDoDetailLiveData = MutableLiveData<ToDoDetailState>(ToDoDetailState.UnInitialized)
     val toDoDetailLiveData: LiveData<ToDoDetailState> = _toDoDetailLiveData
 
-    fun fetchData() = viewModelScope.launch {
+    override fun fetchData() = viewModelScope.launch {
         when(detailMode) {
             DetailMode.WRITE -> {
                 _toDoDetailLiveData.postValue(ToDoDetailState.Write)
