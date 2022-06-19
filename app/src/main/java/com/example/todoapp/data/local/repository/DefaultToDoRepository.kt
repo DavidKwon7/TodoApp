@@ -19,7 +19,7 @@ class DefaultToDoRepository(
     }
 
     override suspend fun insertToDOItem(toDoEntity: ToDoEntity): Long = withContext(ioDispatcher) {
-        toDoDao.insert(toDoEntity = toDoEntity)
+        toDoDao.insert(toDoEntity)
     }
 
     override suspend fun insertToDoList(toDoList: List<ToDoEntity>) = withContext(ioDispatcher) {

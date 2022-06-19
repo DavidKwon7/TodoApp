@@ -11,9 +11,11 @@ import com.example.todoapp.data.local.db.dao.ToDoDao
     exportSchema = false
 )
 abstract class ToDoDatabase: RoomDatabase() {
-    abstract fun todoDao(): ToDoDao
 
     companion object {
         const val DB_NAME = "ToDoDataBase.db"
     }
+
+    abstract fun todoDao(): ToDoDao
+
 }

@@ -13,7 +13,8 @@ import com.example.todoapp.presentation.list.DetailMode
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-/** vm은 최종 도착 단계가 아닌, 거쳐가는 중간 단계.
+/**
+ * vm은 최종 도착 단계가 아닌, 거쳐가는 중간 단계.
  * 그렇기에 상태관리 및 liveData 등을 사용한 데이터 전달 역할을 수행
  */
 

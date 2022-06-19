@@ -5,7 +5,7 @@ import com.example.todoapp.data.entity.ToDoEntity
 
 @Dao
 interface ToDoDao {
-    // data class에 @entity를 붙여줘야 from 이후에 대상을 넣어줄 수 있다.
+
     @Query("SELECT * FROM ToDoEntity")
     suspend fun getAll(): List<ToDoEntity>
 

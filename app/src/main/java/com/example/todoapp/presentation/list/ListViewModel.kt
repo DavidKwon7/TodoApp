@@ -28,7 +28,7 @@ internal class ListViewModel(
     }
 
     fun updateEntity(toDoEntity: ToDoEntity) = viewModelScope.launch {
-        updateToDoUseCase(toDoEntity = toDoEntity)
+        updateToDoUseCase(toDoEntity)
     }
 
     fun deleteAll() = viewModelScope.launch {
