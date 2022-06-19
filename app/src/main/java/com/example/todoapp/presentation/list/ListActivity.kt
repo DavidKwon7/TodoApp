@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todoapp.R
 import com.example.todoapp.databinding.ActivityListBinding
 import com.example.todoapp.presentation.base.BaseActivity
+import com.example.todoapp.presentation.detail.DetailActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -71,7 +72,17 @@ internal class ListActivity : BaseActivity<ListViewModel>(), CoroutineScope {
         } else {
             emptyResultTextView.isGone = true
             recyclerView.isGone = false
-
+            adapter.setToDoList(
+                state.todoList,
+                toDoItemClickListener = {
+                    startActivityForResult(
+                        DetailActivity.getIntent(this@ListActivity, it.id, DetailMode.DETAIL),
+                        DetailActivity.FETCH_REQUEST_CODE
+                    )
+                }, toDoCheckListener = {
+                    viewModel.updateEntity(it)
+                }
+            )
         }
     }
 
