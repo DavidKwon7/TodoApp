@@ -3,6 +3,7 @@ package com.example.todoapp.presentation.list
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.core.view.isGone
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -45,6 +46,12 @@ internal class ListActivity : BaseActivity<ListViewModel>(), CoroutineScope {
                 }
                 is ToDoListState.Loading -> {
                     handleLoadingState()
+                }
+                is ToDoListState.Success -> {
+                    handleSuccessState(it)
+                }
+                is ToDoListState.Error -> {
+                    Log.d("ListActivity", "error: $it")
                 }
             }
         }
