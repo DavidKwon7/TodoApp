@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.core.view.isGone
 import com.example.todoapp.databinding.ActivityDetailBinding
 import com.example.todoapp.presentation.base.BaseActivity
@@ -57,6 +58,26 @@ internal class DetailActivity : BaseActivity<DetailViewModel>() {
             is ToDoDetailState.UnInitialized -> {
                 initViews(binding)
             }
+            is ToDoDetailState.Loading -> {
+                handleLoadingState()
+            }
+            is ToDoDetailState.Success -> {
+                handleSuccessState(it)
+            }
+            is ToDoDetailState.Modify -> {
+                handleModifyState()
+            }
+            is ToDoDetailState.Delete -> {
+                Toast.makeText(this, "성공적으로 삭제되었습니다", Toast.LENGTH_SHORT).show()
+                finish()
+            }
+            is ToDoDetailState.Error -> {
+                Toast.makeText(this, "에러 발생", Toast.LENGTH_SHORT).show()
+                finish()
+            }
+            is ToDoDetailState.Write -> {
+                handleWriteState()
+            }
         }
     }
 
@@ -80,6 +101,39 @@ internal class DetailActivity : BaseActivity<DetailViewModel>() {
                 description = descriptionInput.text.toString()
             )
         }
+    }
+
+    private fun handleLoadingState() = with(binding) {
+        progressBar.isGone = false
+    }
+
+    private fun handleModifyState() = with(binding) {
+        titleInput.isEnabled = true
+        descriptionInput.isEnabled = true
+
+        deleteButton.isGone = true
+        modifyButton.isGone = true
+        updateButton.isGone = false
+    }
+
+    private fun handleWriteState() = with(binding) {
+        titleInput.isEnabled = true
+        descriptionInput.isEnabled = true
+
+        updateButton.isGone = false
+    }
+
+    private fun handleSuccessState(state: ToDoDetailState.Success) = with(binding) {
+        progressBar.isGone = true
+        titleInput.isEnabled = false
+        descriptionInput.isEnabled = false
+        deleteButton.isGone = false
+        modifyButton.isGone = false
+        updateButton.isGone = true
+
+        val toDoItem = state.toDoItem
+        titleInput.setText(toDoItem.title)
+        descriptionInput.setText(toDoItem.description)
     }
 
 }
