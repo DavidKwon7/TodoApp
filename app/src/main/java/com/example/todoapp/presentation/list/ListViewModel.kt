@@ -2,11 +2,9 @@ package com.example.todoapp.presentation.list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.todoapp.data.entity.ToDoEntity
 import com.example.todoapp.domain.todo.DeleteAllToDoItemUseCase
-import com.example.todoapp.domain.todo.GetToDoItemUseCase
 import com.example.todoapp.domain.todo.GetToDoListUseCase
 import com.example.todoapp.domain.todo.UpdateToDoUseCase
 import com.example.todoapp.presentation.base.BaseViewModel
