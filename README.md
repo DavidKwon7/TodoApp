@@ -5,3 +5,4 @@
 - Coroutine
 - Rx
 - Room
+- Hilt
